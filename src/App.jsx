@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 
+// 로컬(한국) 시간대 기준 오늘 날짜(YYYY-MM-DD).
+// toISOString()은 UTC 기준이라 새벽~오전 9시엔 날짜가 어제로 찍히는 문제를 막는다.
+const todayLocal = () => {
+  const d = new Date();
+  const off = d.getTimezoneOffset() * 60000;
+  return new Date(d - off).toISOString().slice(0, 10);
+};
+
 const C = {
   cream: "#FAF3EA", apricot: "#F5EBE0", terra: "#C8845A",
   brown: "#3C2415", mid: "#8B5E3C", light: "#DEC9B0", pale: "#FDF8F2",
@@ -38,7 +46,7 @@ export default function App() {
   const [view, setView]         = useState("write");
   const [focus, setFocus]       = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-  const [info, setInfo]         = useState({ title: "", subtitle: "", author: "햇살", date: new Date().toISOString().slice(0,10) });
+  const [info, setInfo]         = useState({ title: "", subtitle: "", author: "햇살", date: todayLocal() });
   const [goal, setGoal]         = useState(1000);
   const [snaps, setSnaps]       = useState([]);
   const [highlights, setHl]     = useState({});
@@ -126,7 +134,7 @@ export default function App() {
         const fm = txt.match(/^---\n([\s\S]*?)\n---\n\n?/);
         if (fm) {
           const get = k => { const m = fm[1].match(new RegExp(k + ': "?([^"\\n]*)"?')); return m ? m[1] : ""; };
-          setInfo({ title: get("title"), subtitle: get("subtitle"), author: get("author") || "햇살", date: get("date") || new Date().toISOString().slice(0,10) });
+          setInfo({ title: get("title"), subtitle: get("subtitle"), author: get("author") || "햇살", date: get("date") || todayLocal() });
           txt = txt.slice(fm[0].length);
         }
         const wu = txt.match(/^> \*오늘의 문장: (.*)\*\n\n---\n\n/);
@@ -141,7 +149,7 @@ export default function App() {
   const newDoc = () => {
     if (content.length > 10 && !window.confirm("현재 글이 사라져요. 새 글을 시작할까요?")) return;
     setContent(""); setWarmup(""); setHl({});
-    setInfo({ title: "", subtitle: "", author: "햇살", date: new Date().toISOString().slice(0,10) });
+    setInfo({ title: "", subtitle: "", author: "햇살", date: todayLocal() });
   };
 
   const saveSnap = () => {
