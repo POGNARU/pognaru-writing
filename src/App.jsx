@@ -420,7 +420,7 @@ export default function App() {
                   const blob = new Blob([getMd()], { type: "text/markdown" });
                   const url = URL.createObjectURL(blob);
                   const a = document.createElement("a");
-                  a.href = url; a.download = `${info.date.replace(/-/g,"").slice(2)} 몽롱쓰기.md`;
+                  a.href = url; a.download = `${info.date.replace(/-/g,"").slice(2)} ${info.title.trim() || "몽롱쓰기"}.md`;
                   document.body.appendChild(a); a.click();
                   document.body.removeChild(a); URL.revokeObjectURL(url);
                 }}
