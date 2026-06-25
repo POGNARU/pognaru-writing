@@ -1,6 +1,10 @@
 # 🛶 포근한 글쓰기
 
-포근나루(POGNARU STUDIO)의 글쓰기 도구.
+> 포근나루(POGNARU STUDIO)의 글쓰기 도구.
+
+**→ [pognaru.github.io/pognaru-writing](https://pognaru.github.io/pognaru-writing/)**
+
+`main` 브랜치에 푸시하면 GitHub Actions가 빌드해 GitHub Pages로 자동 배포합니다.
 
 - **초고 모드** — 백스페이스 없이 앞으로만 쓰기
 - **퇴고 모드** — 자유롭게 수정
