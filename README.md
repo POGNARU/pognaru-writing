@@ -24,3 +24,17 @@ npm run build  # dist/ 빌드
 ```
 
 포근나루 × Claude
+
+## 파비콘
+
+브라우저 탭 아이콘으로 포근나루 심볼(나룻배)을 쓴다. 2026-07-22 적용.
+
+```
+public/favicon-32.png     탭 아이콘
+public/favicon-180.png    애플 터치 아이콘
+```
+
+Vite 앱이므로 정적 자산은 `public/`에 둔다. 빌드하면 `dist/` 루트로 복사된다.
+`index.html`에서는 `/favicon-32.png`로 참조하는데, Vite가 `base`(`/pognaru-writing/`)를 앞에 붙여 실제로는 `/pognaru-writing/favicon-32.png`로 나간다. 그래서 여기서는 루트 절대경로가 맞다.
+
+원본은 볼트 `클로드 에이전트/브랜드/로고/`에 있다.
